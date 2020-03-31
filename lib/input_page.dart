@@ -6,7 +6,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'botton_content.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
-import 'round_icon_button.dart';
 
 enum Gender { male, female }
 
@@ -128,21 +127,32 @@ class _InputPageState extends State<InputPage> {
                 children: <Widget>[
                   Expanded(
                     child: ReusableCard(
-                        color: kActiveCardColor,
-                        cardChild: ButtonContent(
-                          textLabel: 'WEIGHT',
-                          number: weight,
-                          minusButton: () {
-                            setState(() {
-                              weight--;
-                            });
-                          },
-                          plusButton: () {
-                            setState(() {
-                              weight++;
-                            });
-                          },
-                        )),
+                      color: kActiveCardColor,
+                      cardChild: ButtonContent(
+                        textLabel: 'WEIGHT',
+                        number: weight,
+                        minusButton: () {
+                          setState(() {
+                            weight--;
+                          });
+                        },
+                        plusButton: () {
+                          setState(() {
+                            weight++;
+                          });
+                        },
+                        minusLongButton: () {
+                          setState(() {
+                            weight = weight - 10;
+                          });
+                        },
+                        plusLongButton: () {
+                          setState(() {
+                            weight = weight + 10;
+                          });
+                        },
+                      ),
+                    ),
                   ),
                   Expanded(
                     child: ReusableCard(
@@ -158,6 +168,16 @@ class _InputPageState extends State<InputPage> {
                         plusButton: () {
                           setState(() {
                             age++;
+                          });
+                        },
+                        minusLongButton: () {
+                          setState(() {
+                            age = age - 10;
+                          });
+                        },
+                        plusLongButton: () {
+                          setState(() {
+                            age = age + 10;
                           });
                         },
                       ),

@@ -9,9 +9,16 @@ class ButtonContent extends StatelessWidget {
   final int number;
   final Function minusButton;
   final Function plusButton;
+  final Function minusLongButton;
+  final Function plusLongButton;
 
   ButtonContent(
-      {this.textLabel, this.number, this.minusButton, this.plusButton});
+      {this.textLabel,
+      this.number,
+      this.minusButton,
+      this.plusButton,
+      this.minusLongButton,
+      this.plusLongButton});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,6 +38,7 @@ class ButtonContent extends StatelessWidget {
             RoundIconButton(
               icon: FontAwesomeIcons.minus,
               onPress: minusButton,
+              onLongPress: minusLongButton,
             ),
             SizedBox(
               width: 15.0,
@@ -38,6 +46,7 @@ class ButtonContent extends StatelessWidget {
             RoundIconButton(
               icon: FontAwesomeIcons.plus,
               onPress: plusButton,
+              onLongPress: plusLongButton,
             ),
           ],
         ),

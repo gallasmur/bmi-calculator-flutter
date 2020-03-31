@@ -5,9 +5,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
 
-const Color backgroundColor = Color(0xff1d1e33);
+const Color activeCardColor = Color(0xff1d1e33);
+const Color inactiveCardColor = Color(0xff111328);
 const double heightBottomContainer = 80.0;
 const Color backgroundBottomColor = Color(0xffeb1555);
+enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
   @override
@@ -15,6 +17,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Gender selectedGender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,36 +32,49 @@ class _InputPageState extends State<InputPage> {
                 children: <Widget>[
                   Expanded(
                     child: ReusableCard(
-                      color: backgroundColor,
-                      cardChild: IconContent(
-                        icon: FontAwesomeIcons.mars,
-                        label: 'MALE',
-                      ),
-                    ),
+                        color: selectedGender == Gender.male
+                            ? activeCardColor
+                            : inactiveCardColor,
+                        cardChild: IconContent(
+                          icon: FontAwesomeIcons.mars,
+                          label: 'MALE',
+                        ),
+                        toDoOnTap: () {
+                          setState(() {
+                            selectedGender = Gender.male;
+                          });
+                        }),
                   ),
                   Expanded(
                     child: ReusableCard(
-                      color: backgroundColor,
+                      color: selectedGender == Gender.female
+                          ? activeCardColor
+                          : inactiveCardColor,
                       cardChild: IconContent(
                         icon: FontAwesomeIcons.venus,
                         label: 'FEMALE',
                       ),
+                      toDoOnTap: () {
+                        setState(() {
+                          selectedGender = Gender.female;
+                        });
+                      },
                     ),
                   ),
                 ],
               ),
             ),
             Expanded(
-              child: ReusableCard(color: backgroundColor),
+              child: ReusableCard(color: activeCardColor),
             ),
             Expanded(
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: ReusableCard(color: backgroundColor),
+                    child: ReusableCard(color: activeCardColor),
                   ),
                   Expanded(
-                    child: ReusableCard(color: backgroundColor),
+                    child: ReusableCard(color: activeCardColor),
                   ),
                 ],
               ),
